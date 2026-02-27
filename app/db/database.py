@@ -8,7 +8,8 @@ from app.core.config import settings
 engine = create_async_engine(
     settings.DATABASE_URL,
     echo=False, # Set to True for debugging SQL queries
-    future=True
+    future=True,
+    connect_args={"timeout": 2.0} # Fail fast if DB is not running
 )
 
 # Create async session factory
